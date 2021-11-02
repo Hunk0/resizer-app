@@ -3,7 +3,7 @@ API layer
 """
 import io
 from typing import List
-from fastapi import APIRouter, File, UploadFile, HTTPException
+from fastapi import APIRouter, File, UploadFile, HTTPException, Response
 from fastapi.responses import StreamingResponse
 from fpdf import FPDF
 from PIL import Image
@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.post("/upload")
-async def generate_pdf(images: List[UploadFile] = File(...)):
+async def generate_pdf(response: Response, images: List[UploadFile] = File(...)):
     """Image processing endpoint"""
     pdf = FPDF(unit="mm")
     pdf.set_margins(0, 0, 0)
@@ -34,4 +34,5 @@ async def generate_pdf(images: List[UploadFile] = File(...)):
             )
         )
 
-    return StreamingResponse(io.BytesIO(pdf.output("", "S")))
+    response.headers["Content-Disposition"] = "attachment; filename=file.pdf"
+    return StreamingResponse(io.BytesIO(pdf.output("", "S")), headers=response.headers)
