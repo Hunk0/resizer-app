@@ -40,4 +40,4 @@ It's made in Python/FastAPI, and it does the main operations. Online demo [Here]
 
 ## • Client app 
 
-It's made in JavaScript/React, and consumes the service. Online demo [Here](https://resizer-app-frontend.vercel.app),
+It's made in JavaScript/React, and consumes the service. Online demo [Here (Version 2)](https://resizer-app-frontend2.vercel.app) or [Here (Version 1)](https://resizer-app-frontend.vercel.app),

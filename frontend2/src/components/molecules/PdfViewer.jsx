@@ -1,10 +1,11 @@
-import { Empty } from 'antd';
+import Icon from "@material-tailwind/react/Icon";
+import Paragraph from "@material-tailwind/react/Paragraph";
 
 function PdfViewer({file}) {
     const style = {
         minHeight: '80vh',
         height: '100%',
-        width: '90%'
+        width: '100%'
     }
 
     if(file) return (
@@ -13,19 +14,24 @@ function PdfViewer({file}) {
             title="Archivo ajustado"
             style={style}
         >
-            <a href={file}>Descargar PDF</a>
+            <a href={file}>Descargar</a>
         </iframe>
     )
 
     return (
-        <Empty 
+        <div
             style={{
                 ...style,
+                textAlign: 'center',
                 alignContent: 'center',
                 display: 'grid'
             }}
-            description="Tu archivo generado aparecera aqui"
-        />
+        >
+            <Icon name="attach_file" size="5xl" color="gray" />
+            <Paragraph color="gray">
+                Tu archivo generado aparecera aqui
+            </Paragraph>
+        </div>
     )
 }
 
